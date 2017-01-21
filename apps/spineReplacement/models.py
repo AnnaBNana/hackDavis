@@ -8,6 +8,8 @@ class Procedure(models.Model):
 
 class Hospital(models.Model):
     name = models.CharField(max_length=255)
+    lat = models.DecimalField(max_digits=20, decimal_places=4)
+    long = models.DecimalField(max_digits=20, decimal_places=4)
 
 class Instance(models.Model):
     procedure = models.ForeignKey(Procedure)
