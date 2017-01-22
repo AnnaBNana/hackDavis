@@ -1,7 +1,7 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 40%;
+  height: 60%;
   box-shadow: 0 2px 10px #a2a2a2;
 }
 /* Optional: Makes the sample page fill the window. */
@@ -226,9 +226,6 @@ body,html {
     background-color: #03a9f4;
     font-size: 20px;
     line-height: 44px;
-}
-.sidebar-brand a {
-  color: #ffc107 !important;
 }
 
 .sidebar-nav .dropdown-menu {
