@@ -19,7 +19,7 @@ function initMap() {
   var colors = ['#4CBF00', '#5BAF00', '#6AA000', '#799000', '#898100', '#987200', '#A76200', '#B75300', '#C64300','#E52500']
   // Create the map.
   bubble_map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 12,
     center: {lat: 37.774, lng: -122.419},
     mapTypeId: 'terrain'
   });
@@ -72,16 +72,14 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
-
         $('#instances').append("\
           <div class='col offset-s2 instance'>\
-            <div class='col s4'>\
-              <p><span class='bold'>Procedure:</span>" + hospital.instances[0].procedure_name + "</p>\
-              <p><span class='bold'>Hospital:</span> Spinal Replacement Center of America</p>\
-              <p><span class='bold'>Location:</span> San Francisco, Ca</p>\
+            <div class='col s5'>\
+              <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
+              <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
             </div>\
-            <div class='col s1 offset-s6 cost'>\
-              <p class='bold'>$54,000</p>\
+            <div class='col s1 offset-s5 cost'>\
+              <p class='bold'> $" + hospital.avg_cost.toFixed(2) + "</p>\
             </div>\
           </div>"
         );
