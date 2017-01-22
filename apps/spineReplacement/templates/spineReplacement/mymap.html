@@ -30,9 +30,30 @@ for(var i=0; i<array.length; i++){
 }
 
 console.log("got instances", instances, instances.length)
+var hospitalMax = instances[0].instance_cost
+var hospitalMin = instances[0].instance_cost
+var mycats = [];
 for(var i=0; i<instances.length; i++){
+  if (instances[i].instance_cost > hospitalMax) {
+    hospitalMax = instances[i].instance_cost
+  }
+  if(instances[i].instance_cost < hospitalMin) {
+    hospitalMin = parseInt(instances[i].instance_cost)
+  }
 
 }
+console.log("hospital Mx", hospitalMax)
+var hospitalDiff = parseInt(hospitalMax) - parseInt(hospitalMin);
+
+var increment = Math.floor(hospitalDiff/10);
+console.log(increment)
+for(var j=0; j<10; j++){
+  mycats.push(parseInt(hospitalMin))
+  hospitalMin = parseInt(hospitalMin) + parseInt(increment)
+}
+console.log(mycats)
+
+
 $(function () {
     Highcharts.chart('container', {
         chart: {
@@ -55,10 +76,8 @@ $(function () {
                 '26-28',
                 '28-30',
                 '30-32',
-                '32-34',
-                '34-36',
-                '36-38',
-                '38-40'
+
+
             ],
             crosshair: true
         },
