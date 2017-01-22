@@ -18,6 +18,9 @@ def results(request, procedure):
 def mymap(request):
     return render(request, 'spineReplacement/mymap.html')
 
+def new(request):
+    return render(request, 'spineReplacement/new.html')
+
 def add(request):
     if request.method == "POST":
         hospital = Hospital.objects.filter(name=request.POST['hospital'])[0]

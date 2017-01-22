@@ -108,16 +108,11 @@ html{
    z-index: 5000;
  }
 
- /*.hack{
-   margin-bottom: 250%
- }*/
 
  .navbar{
    height: 100%;
  }
 
  .add_button{
-   vertical-align: bottom;
-   z-index: 9000;
-   position: fixed;
+
  }

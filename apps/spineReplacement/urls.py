@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
+    url(r'^new$', views.new, name="new"),
     url(r'^maps', views.maps, name="maps"),
     url(r'^mymap$', views.mymap, name="mymap"),
     url(r'^instance_details$', views.instance_details, name="instance_details"),
