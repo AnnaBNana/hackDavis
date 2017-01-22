@@ -23,5 +23,6 @@ def hospital_details(request):
         hospital_to_add = hospital.asJson()
         hospital_to_add['instances'] = [inst.asJson() for inst in hospital.instance_set.filter(procedure__name=procedure)]
         hospital_to_add['avg_cost'] = hospital.instance_set.filter(procedure__name=procedure).aggregate(Avg('cost'))['cost__avg']
-        hospitals.append(hospital_to_add)
-    return JsonResponse(hospitals)
+        if hospital_to_add['instances']:
+            hospitals.append(hospital_to_add)
+    return JsonResponse({'hospitals': hospitals})
