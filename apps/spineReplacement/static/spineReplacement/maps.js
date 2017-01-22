@@ -43,7 +43,7 @@ function initMap() {
         return costs
       }
       var colorDistribution = function colorDistribution() {
-        var step = data.hospitals.length/10
+        var step = 10/data.hospitals.length
         var colorMap = {}
         var costArr = costs()
         var current = step
