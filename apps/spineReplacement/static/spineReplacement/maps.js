@@ -32,7 +32,9 @@ function initMap() {
     data: {procedure: procedure}
   })
     .done(function(data) {
+      console.log(data)
       // Helpers
+      console.log(data);
       var costs = function costs() {
         var costs = []
         for (var idx in data.hospitals) {
@@ -42,7 +44,7 @@ function initMap() {
         return costs
       }
       var colorDistribution = function colorDistribution() {
-        var step = data.hospitals.length/10
+        var step = 10/data.hospitals.length
         var colorMap = {}
         var costArr = costs()
         var current = step
@@ -70,6 +72,19 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
+
+        $('#instances').append("\
+          <div class='col offset-s2 instance'>\
+            <div class='col s4'>\
+              <p><span class='bold'>Procedure:</span>" + hospital.instances[0].procedure_name + "</p>\
+              <p><span class='bold'>Hospital:</span> Spinal Replacement Center of America</p>\
+              <p><span class='bold'>Location:</span> San Francisco, Ca</p>\
+            </div>\
+            <div class='col s1 offset-s6 cost'>\
+              <p class='bold'>$54,000</p>\
+            </div>\
+          </div>"
+        );
       }
       // ******************************************************
       // Done adding Markers from AJAX
