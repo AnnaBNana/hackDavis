@@ -6,7 +6,6 @@ from .models import Hospital, Instance, Procedure, Prerequisite
 
 # Create your views here.
 def index(request):
-    allinstances = Instance.objects.all()
     return render(request, 'spineReplacement/index.html')
 
 def maps(request):
