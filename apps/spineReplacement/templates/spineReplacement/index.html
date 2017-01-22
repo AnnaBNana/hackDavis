@@ -45,10 +45,10 @@
          display: block;
          /*opacity: 0.5;*/
          /*color: white;*/
-         margin-left: 15%;
+         margin-left: 5%;
          border-radius: 10px;
-         padding-left: 15px;
-         padding-right: 15px;
+         /*padding-left: 15px;
+         padding-right: 15px;*/
          padding-bottom: 15px;
          /*filter: blur(2px);*/
        }
@@ -66,6 +66,10 @@
          margin-top: 0px;
        }
 
+       .bs-middle {
+         padding-top: 30px;
+       }
+
       .material-icons.md-18 { font-size: 18px; }
       .material-icons.md-24 { font-size: 24px; }
       .material-icons.md-36 { font-size: 36px; }
@@ -78,6 +82,40 @@
       /* Rules for using icons as white on a dark background. */
       .material-icons.md-light { color: rgba(255, 255, 255, 1); }
       .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+      /* label color */
+       .input-field label {
+         color: #ffc107;
+       }
+       /* label focus color */
+       .input-field input[type=text]:focus + label {
+         /*color: #000;*/
+       }
+       /* label underline focus color */
+       .input-field input[type=text]:focus {
+         border-bottom: 1px solid orange;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* valid color */
+       .input-field input[type=text].valid {
+         border-bottom: 1px solid #ffc107;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* invalid color */
+       .input-field input[type=text].invalid {
+         border-bottom: 1px solid #ffc107;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* icon prefix focus color */
+       .input-field .prefix.active {
+         color: #ffc107;
+       }
+
+       .bs-text{
+         font-weight: bold;
+         color: grey;
+         font-size: 18px;
+       }
 
 
 
@@ -108,40 +146,42 @@
     <div class="parallax">
       <img src="https://static.pexels.com/photos/38934/pexels-photo-38934.jpeg">
     </div>
+    <!-- IGNORE THIS HACKY BULLSHIT AND DON'T TOUCH -->
     <div class="bs-input-wrap z-depth-5">
       <div class="input-field container center valign">
-        <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
+        <p class='bs-text'>Search by medical procedure and find the cost of care in your area!</p>
+        <!-- <i class="material-icons prefix">mode_edit</i> -->
         <input class='bs-input' type="text" id='search'>
-        <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
         <input class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
       </div>
     </div>
     <div class="bs-input-wrap sub z-depth-5 white">
       <div class="input-field container center valign">
-        <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
+        <p class='bs-text'>Search by medical procedure and find the cost of care in your area!</p>
+        <!-- <i class="material-icons prefix">mode_edit</i> -->
         <input class='bs-input' type="text" id='search'>
-        <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
         <input disable class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
       </div>
     </div>
+    <!-- SUPER HORRIBLE HACKY BULLSHIT ENDS HERE -->
   </div>
-  <div class="section light-blue z-depth-1">
+  <div class="bs-middle section light-blue z-depth-1">
     <div class="row white-text">
 
       <div class="col s4 center">
         <i class="material-icons md-48 amber-text">equalizer</i>
         <h4>Explore</h4>
-        <p>Find the real cost of rising Health Care rates</p>
-      </div>
+        <p>With Carecost, you can explore crowd-sourced data on the actual cost of Care in your area.</p>
+        </div>
       <div class="col s4 center">
         <i class="material-icons md-48 amber-text">person_pin</i>
         <h4>Share</h4>
-        <p>Contribute your experience to an extra growing pool of accessable data</p>
+        <p>Contribute your experience with Carecost to help build a transparent database for Health Care pricing. </p>
       </div>
       <div class="col s4 center">
         <i class="material-icons md-48 amber-text">web</i>
         <h4>Develop</h4>
-        <p>Leverage the power of Crowd Sourced data with our RESTful API</p>
+        <p>Using our RESTful API, developers can build their own apps using the data we crowd-source!</p>
       </div>
 
     </div>
