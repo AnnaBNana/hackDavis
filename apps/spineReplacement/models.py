@@ -40,7 +40,6 @@ class Instance(models.Model):
             "instance_cost": self.cost
         }
 
-
 class Prerequisite(models.Model):
     name = models.CharField(max_length=255)
     procedure = models.ManyToManyField(Procedure, related_name="procedure")
