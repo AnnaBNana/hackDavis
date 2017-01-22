@@ -18,10 +18,11 @@ function initMap() {
   // Constants for the map
   var colors = ['#4CBF00', '#5BAF00', '#6AA000', '#799000', '#898100', '#987200', '#A76200', '#B75300', '#C64300','#E52500']
   // Create the map.
+
   bubble_map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: {lat: 37.774, lng: -122.419},
-    mapTypeId: 'terrain'
+    mapTypeId: 'terrain',
   });
   // Get the procedure and make ajax request
   var procedure = getUrlParameter('procedure').replace('+', ' ')
