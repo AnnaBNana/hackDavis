@@ -118,6 +118,7 @@ function initMap() {
           colorMap[costArr[idx]] = colors[Math.floor(current)]
           current += step
         }
+        colorMap[costArr[costArr.length-1]] = colors[colors.length-1]
         return colorMap
       }
       colorMap = colorDistribution()
