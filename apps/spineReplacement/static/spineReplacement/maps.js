@@ -291,7 +291,6 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
-
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
         })
