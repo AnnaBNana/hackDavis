@@ -19,7 +19,9 @@ def mymap(request):
     return render(request, 'spineReplacement/mymap.html')
 
 def new(request):
-    return render(request, 'spineReplacement/new.html')
+    hospitals = Hospital.objects.all()
+    procedures = Procedure.objects.all()
+    return render(request, 'spineReplacement/new.html', {hospitals: hospitals, procedures: procedures})
 
 def add(request):
     if request.method == "POST":
