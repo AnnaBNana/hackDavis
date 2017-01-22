@@ -53,6 +53,64 @@ body,html {
 }
 
 /*-------------------------------*/
+/*       map legend              */
+/*-------------------------------*/
+.labels {
+  /*width: 20px;*/
+  height: 200px;
+  position: absolute;;
+  top: 10px;
+  right: 40px;
+  z-index: 5000;
+  font-weight: bold;
+}
+.top_pad {
+  padding-bottom: 150px;
+}
+#legend {
+  width: 20px;
+  height: 200px;
+  background-color: black;
+  position: absolute;;
+  top: 10px;
+  right: 10px;
+  z-index: 5000;
+}
+#legendBox {
+  width:20px;
+  height:20px;
+}
+.box1 {
+  background-color: #E52500;
+}
+.box2 {
+  background-color: #C64300;
+}
+.box3 {
+  background-color: #B75300;
+}
+.box4 {
+  background-color: #A76200;
+}
+.box5 {
+  background-color: #987200;
+}
+.box6 {
+  background-color: #898100;
+}
+.box7 {
+  background-color: #799000;
+}
+.box8 {
+  background-color: #6AA000;
+}
+.box9 {
+  background-color: #5BAF00;
+}
+.box10 {
+  background-color: #4CBF00;
+}
+/*-------------------------------*/
 /*           Wrappers            */
 /*-------------------------------*/
 
