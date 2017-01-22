@@ -18,6 +18,14 @@ def results(request, procedure):
 def mymap(request):
     return render(request, 'spineReplacement/mymap.html')
 
+def add(request):
+    if request.method == "POST":
+        hospital = Hospital.objects.filter(name=request.POST['hospital'])[0]
+        procedure = Procedure.objects.filter(name=request.POST['procedure'])[0]
+        i = Instance(cost=request.POST['cost'], date=request.POST['date'], hospital=hospital, procedure=procedure)
+        i.save()
+        return JsonResponse({'status': 'success'})
+
 def instance_details(request):
     procedure = request.GET['procedure']
     idict = {"instances": [obj.asJson() for obj in Instance.objects.filter(procedure__name=procedure)]}
