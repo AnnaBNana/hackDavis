@@ -32,6 +32,7 @@ function initMap() {
     data: {procedure: procedure}
   })
     .done(function(data) {
+      console.log(data)
       // Helpers
       var costs = function costs() {
         var costs = []
