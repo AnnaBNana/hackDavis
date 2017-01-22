@@ -58,7 +58,26 @@
          /*filter: blur(2px);*/
        }
 
+       input .amber {
+         text-transform: lowercase;
+       }
 
+       footer.page-footer {
+         margin-top: 0px;
+       }
+
+      .material-icons.md-18 { font-size: 18px; }
+      .material-icons.md-24 { font-size: 24px; }
+      .material-icons.md-36 { font-size: 36px; }
+      .material-icons.md-48 { font-size: 48px; }
+
+      /* Rules for using icons as black on a light background. */
+      .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+      .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+      /* Rules for using icons as white on a dark background. */
+      .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+      .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 
 
@@ -73,9 +92,9 @@
 <body>
 
   <nav>
-    <div class="nav-wrapper cyan z-depth-0">
+    <div class="nav-wrapper light-blue z-depth-0">
       <!-- <div class="bs-logo"> -->
-      <a href="#" class="brand-logo"><i class="material-icons white-text">group_work</i>Spineotronics GmbH</a>
+      <a href="#" class="brand-logo"><i class="material-icons md-36 amber-text">group_work</i>Carecost</a>
       <!-- </div> -->
       <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="">Sass</a></li>
@@ -94,7 +113,7 @@
         <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
         <input class='bs-input' type="text" id='search'>
         <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
-        <input class='orange waves-effect waves-light btn' type="submit" name="" value="Find Your Procedure!">
+        <input class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
       </div>
     </div>
     <div class="bs-input-wrap sub z-depth-5 white">
@@ -102,19 +121,55 @@
         <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
         <input class='bs-input' type="text" id='search'>
         <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
-        <input class='orange waves-effect waves-light btn' type="submit" name="" value="Find Your Procedure!">
+        <input disable class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
       </div>
     </div>
   </div>
-  <div class="section cyan z-depth-1">
-    <div class="row container white-text">
-      <h2 class="header">Business Shit</h2>
-      <p class="">Beta cells cornea floss hyperglycemia insulin injections iris lacrimal glands mucus myopia rx tobacco. Adhd airway obstruction blackhead epiglottis fats glycosylated hemoglobin test (hemoglobin a1c) hypoglycemia infection nebulizer pneumonia retina sulfites taste buds tympanogram. Asthma beta cells blood glucose level cerebellum cone contagious controller medications dermatologist eeg (electroencephalogram) exchange meal plan exercise-induced asthma genetics glucagon glycemic index hyperglycemia larynx microscope mucus nits palate perspiration pinna retainer rheumatologist spacer. Aerobic activity bronchial tubes bronchodilator ct scan or cat scan depression diaphragm eustachian tube hydrogen peroxide immunotherapy and allergy shots iris nebulizer nits stapes symptoms taste buds.</p>
+  <div class="section light-blue z-depth-1">
+    <div class="row white-text">
+
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">equalizer</i>
+        <h4>Explore</h4>
+        <p>Find the real cost of rising Health Care rates</p>
+      </div>
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">person_pin</i>
+        <h4>Share</h4>
+        <p>Contribute your experience to an extra growing pool of accessable data</p>
+      </div>
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">web</i>
+        <h4>Develop</h4>
+        <p>Leverage the power of Crowd Sourced data with our RESTful API</p>
+      </div>
+
     </div>
   </div>
   <div class="parallax-container">
-    <div class="parallax"><img src="http://www.wholesomewave.org/wp-content/uploads/2015/01/stock-photo-10501389-hospital-300x211.jpg"></div>
+    <div class="parallax">
+      <img src="https://static.pexels.com/photos/239853/pexels-photo-239853.jpeg">
+    </div>
   </div>
+  <footer class="page-footer light-blue">
+       <div class="container">
+         <div class="row">
+           <div class="col l6 s12">
+             <h5 class="white-text">All Rights Reserved</h5>
+             <p class="grey-text text-lighten-4">This is legal data that should not really be visible for the demo so who cares what I put in here anyway.</p>
+           </div>
+           <div class="col l4 offset-l2 s12">
+
+           </div>
+         </div>
+       </div>
+       <div class="footer-copyright">
+         <div class="container">
+         © 2016 Copyright Brendan, Amy, Anna, and Ketul
+         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+         </div>
+       </div>
+  </footer>
 
 
 </body>
