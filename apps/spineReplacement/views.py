@@ -8,6 +8,9 @@ from .models import Hospital, Instance, Procedure, Prerequisite
 def index(request):
     return render(request, 'spineReplacement/index.html')
 
+def maps(request):
+    return render(request, 'spineReplacement/maps.html')
+
 def results(request, procedure):
     return render(request, 'spineReplacement/results.html')
 
