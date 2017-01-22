@@ -4,52 +4,59 @@ var data_seed = {"hospitals": [{"hospital_lat": "37.7741", "hospital_long": "-12
   // This example creates circles on the map, representing populations in North
   // America.
   // First, create an object containing LatLng and population for each city.
-  var citymap = {
-    chicago: {
-      center: {lat: 41.878, lng: -87.629},
-      population: 2714856
-    },
-    newyork: {
-      center: {lat: 40.714, lng: -74.005},
-      population: 8405837
-    },
-    losangeles: {
-      center: {lat: 34.052, lng: -118.243},
-      population: 3857799
-    },
-    vancouver: {
-      center: {lat: 49.25, lng: -123.1},
-      population: 603502
-    }
-  };
+var colors = ['#4CBF00', '#5BAF00', '#6AA000', '#799000', '#898100', '#987200', '#A76200', '#B75300', '#C64300','#E52500']
 
   function initMap() {
     // Create the map.
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
-      center: {lat: 38.581, lng: -121.494},
+      center: {lat: 37.774, lng: -122.419},
       mapTypeId: 'terrain'
     });
+    colorMap = colorDistribution()
 
     // Construct the circle for each value in citymap.
     // Note: We scale the area of the circle based on the population.
 
     // need the outline color to change depending on hover
-    for (var city in citymap) {
+    for (var idx in data_seed.hospitals) {
 
+      var hospital = data_seed.hospitals[idx]
       // Add the circle for this city to the map.
       var cityCircle = new google.maps.Circle({
         // stroke color gray until hover
-        strokeColor: '#FF0000',
+        strokeColor: colorMap[hospital.avg_cost],
         strokeOpacity: 0.8,
         strokeWeight: 1,
         // fill color from object var
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
+        fillColor: colorMap[hospital.avg_cost],
+        fillOpacity: 0.5,
         map: map,
-        center: citymap[city].center,
-        radius: Math.sqrt(citymap[city].population) * 100
+        center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
+        radius: Math.sqrt(hospital.instances.length * 10) * 100
       });
     }
   }
 // ########################################################Jay###########################################################
+
+
+function costs() {
+  var costs = []
+  for (var idx in data_seed.hospitals) {
+    costs.push(data_seed.hospitals[idx].avg_cost)
+  }
+  costs.sort()
+  return costs
+}
+
+function colorDistribution() {
+  var step = data_seed.hospitals.length/10
+  var colorMap = {}
+  var costArr = costs()
+  var current = step
+  for (var idx in costArr) {
+    colorMap[costArr[idx]] = colors[Math.floor(current)]
+    current += step
+  }
+  return colorMap
+}
