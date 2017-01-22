@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^mymap$', views.mymap, name="mymap"),
     url(r'^instance_details$', views.instance_details, name="instance_details"),
     url(r'^hospital_details$', views.hospital_details, name="hospital_details"),
+    url(r'^add$', views.add, name="add"),
 ]
