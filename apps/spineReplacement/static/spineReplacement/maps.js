@@ -74,12 +74,12 @@ function initMap() {
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
         $('#instances').append("\
-          <div class='col offset-s2 instance'>\
-            <div class='col s5'>\
+          <div class='col-md-10 col-md-offset-2 instance'>\
+            <div class='col-md-5'>\
               <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
               <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
             </div>\
-            <div class='col s1 offset-s5 cost'>\
+            <div class='col-md-1 col-md-offset-5 cost'>\
               <p class='bold'> $" + hospital.avg_cost.toFixed(2) + "</p>\
             </div>\
           </div>"
