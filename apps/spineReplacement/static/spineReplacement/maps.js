@@ -23,76 +23,71 @@ function initMap() {
     zoom: 12,
     center: {lat: 37.774, lng: -122.419},
     styles: [
-    {
-      "featureType": "landscape.man_made",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "color": "#d6d1c2" }
-      ]
-    },
-    {
-      "featureType": "landscape.natural",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "color": "#cbc2a9" }
-      ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#78d066"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#eee238"
-            }
-        ]
-    },
+          {
+              "featureType": "all",
+              "elementType": "labels",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#aadd55"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#ffc107"
+                  }
+              ]
+          },
 
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#56bcd2"
-            }
-        ]
-    }
-]
+          {
+              "featureType": "road.highway",
+              "elementType": "labels",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "elementType": "labels.text",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "elementType": "labels.text",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "water",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#03a9f4"
+                  }
+              ]
+          }
+      ]
   });
   // Get the procedure and make ajax request
   var procedure = getUrlParameter('procedure').replace('+', ' ')
@@ -151,110 +146,7 @@ function initMap() {
         );
 
         $('#' + hospital.id).click(function(){
-          var desiredid = $(this).attr('id');
-          var instances;
-          var hospital_to_display;
-          for(var i=0; i<data.hospitals.length; i++){
-            if(data.hospitals[i].id == desiredid) {
-              instances = data.hospitals[i].instances
-              hospital_to_display = data.hospitals[i].hospital_name
-              console.log("got the name", data.hospitals[i].hospital_name)
-            }
-          }
-          console.log("found instances", instances)
-          var hospitalMax = instances[0].instance_cost
-          var hospitalMin = instances[0].instance_cost
-          var mycats = [];
-          for(var i=0; i<instances.length; i++){
-            if (instances[i].instance_cost > hospitalMax) {
-              hospitalMax = instances[i].instance_cost
-            }
-            if(instances[i].instance_cost < hospitalMin) {
-              hospitalMin = parseInt(instances[i].instance_cost)
-            }
-          }
-          console.log("hospital Mx", hospitalMax, "hospital min", hospitalMin)
-          var hospitalDiff = parseInt(hospitalMax) - parseInt(hospitalMin);
-          //
-          var increment = Math.floor(hospitalDiff/10);
-          if(increment < 100){
-            increment = 100;
-          }
-          console.log("increment", increment)
-          for(var j=0; j<10; j++){
-            mycats.push(parseInt(hospitalMin))
-            hospitalMin = parseInt(hospitalMin) + parseInt(increment)
-          }
-          console.log(mycats)
-          var myvalues = [0,0,0,0,0,0,0,0,0,0];
-          for(var k=0; k<instances.length; k++){
-            var added = false
-            for(var m=0; m<mycats.length-1; m++){
-              var parsed = parseFloat(instances[k].instance_cost)
-
-              if(parsed >= mycats[m] && parsed < mycats[m+1]){
-                myvalues[m] += 1;
-                added = true
-                break;
-              }
-
-            }
-            if(added == false){
-              console.log("going here", m)
-                myvalues[m] += 1;
-            }
-
-          }
-          console.log(myvalues)
-          $(function () {
-              Highcharts.chart('highch', {
-                  chart: {
-                      type: 'column'
-                  },
-                  title: {
-                      text: "Spine replacements at " + hospital_to_display
-                  },
-
-                  xAxis: {
-                      categories: mycats,
-                      crosshair: true,
-                      title: {
-                          text: 'Cost in dollars (USD)'
-                      }
-                  },
-                  yAxis: {
-                      min: 0,
-                      title: {
-                          text: 'Number of procedures completed'
-                      }
-                  },
-                  tooltip: {
-                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                          '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                      footerFormat: '</table>',
-                      shared: true,
-                      useHTML: true
-                  },
-                  plotOptions: {
-                      column: {
-                          pointPadding: 0.2,
-                          borderWidth: 0
-                      }
-                  },
-                  series: [{
-                      name: hospital_to_display,
-                      data: myvalues
-
-                  }]
-              });
-          });
-
-
-
-
-
-
+          console.log($(this).attr('id'));
         })
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
@@ -270,7 +162,7 @@ function initMap() {
         });
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
-        });
+        })
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseout', function() {
           circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
         });
