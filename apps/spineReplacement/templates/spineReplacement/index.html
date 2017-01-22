@@ -8,6 +8,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
 
       html{
@@ -23,6 +24,44 @@
          color: red;
        }
 
+       .bs-logo{
+         /*padding-left: 10px;*/
+         display: inline-block;
+       }
+
+       .brand-logo{
+         margin-left: 20px;
+       }
+
+       /*.bs_imput{
+         display: block;
+         border-radius: 25px;
+         width: 50%;
+       }*/
+
+
+       .bs-input-wrap{
+         /*opacity: 0.3;*/
+         display: block;
+         /*opacity: 0.5;*/
+         /*color: white;*/
+         margin-left: 15%;
+         border-radius: 10px;
+         padding-left: 15px;
+         padding-right: 15px;
+         padding-bottom: 15px;
+         /*filter: blur(2px);*/
+       }
+       .sub {
+         position: absolute;
+         filter: opacity(50%);
+         /*filter: blur(2px);*/
+       }
+
+
+
+
+
     </style>
     <script>
       $(document).ready(function(){
@@ -34,23 +73,43 @@
 <body>
 
   <nav>
-    <div class="nav-wrapper yellow darken-4 z-depth-0">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <div class="nav-wrapper cyan z-depth-0">
+      <!-- <div class="bs-logo"> -->
+      <a href="#" class="brand-logo"><i class="material-icons white-text">group_work</i>Spineotronics GmbH</a>
+      <!-- </div> -->
+      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="">Sass</a></li>
         <li><a href="">Components</a></li>
         <li><a href="">JavaScript</a></li>
-      </ul>
+      </ul> -->
     </div>
   </nav>
 
-  <div class="parallax-container">
-    <div class="parallax"><img src="http://www.wholesomewave.org/wp-content/uploads/2015/01/stock-photo-10501389-hospital-300x211.jpg"></div>
+  <div class="parallax-container valign-wrapper">
+    <div class="parallax">
+      <img src="https://static.pexels.com/photos/38934/pexels-photo-38934.jpeg">
+    </div>
+    <div class="bs-input-wrap z-depth-5">
+      <div class="input-field container center valign">
+        <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
+        <input class='bs-input' type="text" id='search'>
+        <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
+        <input class='orange waves-effect waves-light btn' type="submit" name="" value="Find Your Procedure!">
+      </div>
+    </div>
+    <div class="bs-input-wrap sub z-depth-5 white">
+      <div class="input-field container center valign">
+        <!-- <h2 class='header'>Fix your spine, bitch</h2> -->
+        <input class='bs-input' type="text" id='search'>
+        <!-- <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a> -->
+        <input class='orange waves-effect waves-light btn' type="submit" name="" value="Find Your Procedure!">
+      </div>
+    </div>
   </div>
-  <div class="section yellow darken-4 z-depth-1">
+  <div class="section cyan z-depth-1">
     <div class="row container white-text">
-      <h2 class="header">Parallax</h2>
-      <p class="">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+      <h2 class="header">Business Shit</h2>
+      <p class="">Beta cells cornea floss hyperglycemia insulin injections iris lacrimal glands mucus myopia rx tobacco. Adhd airway obstruction blackhead epiglottis fats glycosylated hemoglobin test (hemoglobin a1c) hypoglycemia infection nebulizer pneumonia retina sulfites taste buds tympanogram. Asthma beta cells blood glucose level cerebellum cone contagious controller medications dermatologist eeg (electroencephalogram) exchange meal plan exercise-induced asthma genetics glucagon glycemic index hyperglycemia larynx microscope mucus nits palate perspiration pinna retainer rheumatologist spacer. Aerobic activity bronchial tubes bronchodilator ct scan or cat scan depression diaphragm eustachian tube hydrogen peroxide immunotherapy and allergy shots iris nebulizer nits stapes symptoms taste buds.</p>
     </div>
   </div>
   <div class="parallax-container">
