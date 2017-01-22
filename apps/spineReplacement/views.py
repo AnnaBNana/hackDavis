@@ -8,5 +8,8 @@ def index(request):
 
 def results(request, procedure):
     iset = Instance.objects.filter(procedure__name__contains=procedure)
+    
     return render(request, 'spineReplacement/results.html', {"instances": iset})
 
+def mymap(request):
+    return render(request, 'spineReplacement/mymap.html')

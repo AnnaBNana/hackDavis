@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <!-- <script src="/js/highstock.js"></script> -->
+
+<!-- <script src="/js/modules/map.js"></script> -->
+
+
+  </head>
+  <body>
+    <div id="container" style="width:100%; height:400px;"></div>
+  </body>
+  <script type="text/javascript">
+
+
+
+$(function () {
+  Highcharts.chart('container', {
+      title: {
+          text: 'Spine replacements in Santa Clara County'
+      },
+      xAxis: {
+          categories: ['10-15', '15-20', '20-25', '25-30', '30-35']
+      },
+      labels: {
+          items: [{
+              html: 'Spine replacements per hospital',
+              style: {
+                  left: '50px',
+                  top: '18px',
+                  color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+              }
+          }]
+      },
+      series: [{
+          type: 'column',
+
+          data: [3, 2, 1, 3, 4]
+
+      // }, {
+      //     type: 'column',
+      //     name: 'Kaiser',
+      //     data: [2, 3, 5, 7, 6]
+      // }, {
+      //     type: 'column',
+      //     name: 'UCSF',
+      //     data: [4, 3, 3, 9, 0]
+      // }, {
+      //     type: 'spline',
+      //     name: 'Average',
+      //     data: [3, 2.67, 3, 6.33, 3.33],
+      //     marker: {
+      //         lineWidth: 2,
+      //         lineColor: Highcharts.getOptions().colors[3],
+      //         fillColor: 'white'
+      //     }
+      }, {
+          type: 'pie',
+          name: 'Spine replacements by hospital',
+          data: [{
+              name: 'St. Jude',
+              y: 13,
+              color: Highcharts.getOptions().colors[0] // Jane's color
+          }, {
+              name: 'Kaiser',
+              y: 23,
+              color: Highcharts.getOptions().colors[1] // John's color
+          }, {
+              name: 'UCSF',
+              y: 19,
+              color: Highcharts.getOptions().colors[2] // Joe's color
+          }],
+          center: [100, 80],
+          size: 100,
+          showInLegend: false,
+          dataLabels: {
+              enabled: false
+          }
+      }]
+  });
+});
+  </script>
+</html>
