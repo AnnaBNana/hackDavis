@@ -125,6 +125,7 @@
                         <li><a href="#">Tissue expansion</a></li>
                       </ul>
                     </li>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pulmonary medicine<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
@@ -162,7 +163,7 @@
       </div> <!-- col -->
 
         </div><!-- row -->
-  </div> <!-- container -->
+      </div> <!-- container -->
     <div id="map"></div>
     <div class="labels">
       <p class="top_pad">highest cost</p>
@@ -183,6 +184,15 @@
     <div class="row" id="instances">
     </div>
 
+    <!-- modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          ...
+        </div>
+      </div>
+    </div>
+    <!-- end of modal -->
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPTEusgaWURSfI-wEEsx61PLuwy1WvJu8&callback=initMap">
