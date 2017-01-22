@@ -6,10 +6,12 @@ body,html {
   height: 100%;
 }
 
+
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: transparent;
+  font-size: 1.3em;
 
 }
 
@@ -80,6 +82,7 @@ body,html {
     line-height: 20px;
     display: inline-block;
     width: 100%;
+    font-size: 6;
 }
 
 .sidebar-nav li:before {
@@ -90,16 +93,20 @@ body,html {
     z-index: -1;
     height: 100%;
     width: 3px;
-    background-color: #00bcd4;
+    background-color: #03a9f4;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
             transition: width .2s ease-in;
 
 }
-.sidebar-nav li:first-child a {
-    color: #fff;
+.sidebar-nav li a {
+    color: #03a9f4;
     /*background-color: #1a1a1a;*/
+}
+.dropdown ul li a {
+  color: #03a9f4;
+  font-size: 0.75em;
 }
 /*.sidebar-nav li:nth-child(2):before {
     background-color: #ec1b5a;
@@ -141,17 +148,17 @@ body,html {
     text-decoration: none;
     padding: 10px 15px 10px 30px;
 }
-/*
+
 .sidebar-nav li a:hover,
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus,
 .sidebar-nav li.open a:hover,
 .sidebar-nav li.open a:active,
 .sidebar-nav li.open a:focus{
-    color: #fff;
+
     text-decoration: none;
-    background-color: transparent;
-}*/
+    background-color: #03a9f4;
+}
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
@@ -166,7 +173,12 @@ body,html {
     border-radius: 0;
     border: none;
     background-color: #222;
+    /*changes the dropdown background*/
     box-shadow: none;
+}
+
+.dropdown-menu li a {
+  color: #03a9f4;
 }
 
 /*-------------------------------*/
@@ -249,6 +261,7 @@ body,html {
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
   background-color: #1a1a1a;
+  /*changes the x*/
 }
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {

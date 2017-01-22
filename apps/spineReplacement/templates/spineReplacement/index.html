@@ -2,43 +2,215 @@
 <html lang="en">
 <head>
     <title>Django DavisHack</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="../../static/spineReplacement/jquery-3.1.1.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="../../static/spineReplacement/materialize.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Compiled and minified JavaScript -->
+    <script src="../../static/spineReplacement/materialize.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      html{
+        font-family: Roboto;
+      }
 
+       img{
+         max-width:100%;
+         height:auto
+       }
+
+       .bs-white{
+         color: red;
+       }
+
+       .bs-logo{
+         /*padding-left: 10px;*/
+         display: inline-block;
+       }
+
+       .brand-logo{
+         margin-left: 20px;
+       }
+
+       /*.bs_imput{
+         display: block;
+         border-radius: 25px;
+         width: 50%;
+       }*/
+
+
+       .bs-input-wrap{
+         /*opacity: 0.3;*/
+         display: block;
+         /*opacity: 0.5;*/
+         /*color: white;*/
+         margin-left: 15%;
+         border-radius: 10px;
+         padding-left: 15px;
+         padding-right: 15px;
+         padding-bottom: 15px;
+         /*filter: blur(2px);*/
+       }
+       .sub {
+         position: absolute;
+         filter: opacity(50%);
+         /*filter: blur(2px);*/
+       }
+
+       input .amber {
+         text-transform: lowercase;
+       }
+
+       footer.page-footer {
+         margin-top: 0px;
+       }
+
+       .bs-middle {
+         padding-top: 30px;
+       }
+
+      .material-icons.md-18 { font-size: 18px; }
+      .material-icons.md-24 { font-size: 24px; }
+      .material-icons.md-36 { font-size: 36px; }
+      .material-icons.md-48 { font-size: 48px; }
+
+      /* Rules for using icons as black on a light background. */
+      .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+      .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+      /* Rules for using icons as white on a dark background. */
+      .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+      .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+      /* label color */
+       .input-field label {
+         color: #ffc107;
+       }
+       /* label focus color */
+       .input-field input[type=text]:focus + label {
+         /*color: #000;*/
+       }
+       /* label underline focus color */
+       .input-field input[type=text]:focus {
+         border-bottom: 1px solid orange;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* valid color */
+       .input-field input[type=text].valid {
+         border-bottom: 1px solid #ffc107;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* invalid color */
+       .input-field input[type=text].invalid {
+         border-bottom: 1px solid #ffc107;
+         box-shadow: 0 1px 0 0 #ffc107;
+       }
+       /* icon prefix focus color */
+       .input-field .prefix.active {
+         color: #ffc107;
+       }
+
+       .bs-text{
+         font-weight: bold;
+         color: grey;
+         font-size: 18px;
+       }
+
+
+
+    </style>
+    <script>
+      $(document).ready(function(){
+        $('.parallax').parallax();
+      });
+    </script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-
-            <li class="active"><a href="#"> Dashboard </a></li>
-
-              <li>Return to the dashboard</a></li>
-
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-
-            <li>"Something here"</li>
-
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <div class="container">
-
-      
+  <nav>
+    <div class="nav-wrapper light-blue z-depth-0">
+      <!-- <div class="bs-logo"> -->
+      <a href="#" class="brand-logo"><i class="material-icons md-36 amber-text">group_work</i>Carecost</a>
+      <!-- </div> -->
+      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="">Sass</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">JavaScript</a></li>
+      </ul> -->
     </div>
+  </nav>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="parallax">
+      <img src="../../static/spineReplacement/brain_skull.jpeg">
+    </div>
+    <!-- IGNORE THIS HACKY BULLSHIT AND DON'T TOUCH -->
+    <div class="bs-input-wrap z-depth-5">
+      <div class="input-field container center valign">
+        <p class='bs-text'>Search by medical procedure and find the cost of care in your area!</p>
+        <!-- <i class="material-icons prefix">mode_edit</i> -->
+        <input class='bs-input' type="text" id='search'>
+        <input class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
+      </div>
+    </div>
+    <div class="bs-input-wrap sub z-depth-5 white">
+      <div class="input-field container center valign">
+        <p class='bs-text'>Search by medical procedure and find the cost of care in your area!</p>
+        <!-- <i class="material-icons prefix">mode_edit</i> -->
+        <input class='bs-input' type="text" id='search'>
+        <input disable class='amber waves-effect waves-light btn' type="submit" name="" value="Find my procedure!">
+      </div>
+    </div>
+    <!-- SUPER HORRIBLE HACKY BULLSHIT ENDS HERE -->
+  </div>
+  <div class="bs-middle section light-blue z-depth-1">
+    <div class="row white-text">
+
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">equalizer</i>
+        <h4>Explore</h4>
+        <p>With Carecost, you can explore crowd-sourced data on the actual cost of Care in your area.</p>
+        </div>
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">person_pin</i>
+        <h4>Share</h4>
+        <p>Contribute your experience with Carecost to help build a transparent database for Health Care pricing. </p>
+      </div>
+      <div class="col s4 center">
+        <i class="material-icons md-48 amber-text">web</i>
+        <h4>Develop</h4>
+        <p>Using our RESTful API, developers can build their own apps using the data we crowd-source!</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="../../static/spineReplacement/clinic_sad.jpeg">
+    </div>
+  </div>
+  <footer class="page-footer light-blue">
+       <div class="container">
+         <div class="row">
+           <div class="col l6 s12">
+             <h5 class="white-text">All Rights Reserved</h5>
+             <p class="grey-text text-lighten-4">This is legal data that should not really be visible for the demo so who cares what I put in here anyway.</p>
+           </div>
+           <div class="col l4 offset-l2 s12">
+
+           </div>
+         </div>
+       </div>
+       <div class="footer-copyright">
+         <div class="container">
+         © 2016 Copyright Brendan, Amy, Anna, and Ketul
+         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+         </div>
+       </div>
+  </footer>
+
+
 </body>
 </html>

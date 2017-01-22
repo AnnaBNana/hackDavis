@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Get started with MapView - Create a 2D map</title>
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+<link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+<script src="https://js.arcgis.com/3.19/"></script>
+<script>
+// declare variables to pull data from ajax req
+// need the dict of values to send to server
+require([
+   "esri/Map",
+   "esri/views/SceneView",
+   "esri/layers/FeatureLayer",
+   "esri/symbols/SimpleMarkerSymbol",
+   "esri/renderers/SimpleRenderer",
+   "dojo/domReady!"
+ ], function(Map, SceneView, FeatureLayer, SimpleMarkerSymbol, SimpleRenderer
+) {
+ // URL to the service containing smart phone ownership data
+ var url = "https://services7.arcgis.com/bOasjyUpZrq0nFDD/arcgis/rest/services/InstanceLayer/FeatureServer";
+
+ var colorVisVar = {
+   type: "color",
+   field: "avg_cost",
+   normalizationField: "instances",
+   stops: [
+     { value: 0.33, color: "#397013" },
+     { value: 0.53, color: "#db5836" }
+   ]
+ };
+
+ var sizeVisVar = {
+   type: "size",
+   field: "instances",
+  //  normalizationField: "SQMI",
+   valueUnit: "unknown",
+   stops: [
+     // need a dynamic min and max from hosp data in context object
+     { value: 4000, size: 6 },
+     { value: 23000, size: 40 }
+   ]
+ };
+
+ var renderer = new SimpleRenderer({
+   // Define a default marker symbol with a small outline
+   symbol: new SimpleMarkerSymbol({
+     outline: { // autocasts as new SimpleLineSymbol()
+       // these vars need to change on mouse over
+       color: [128,128,128],
+       width: 0.5
+     }
+   }),
+   // Set the color and size visual variables on the renderer
+   visualVariables: [colorVisVar, sizeVisVar]
+ });
+
+ // Set the renderer on the feature layer
+ var zipLyr = new FeatureLayer({
+   url: url,
+   outFields: ["*"],
+   definitionExpression: "NAME='Sacramento'",
+   renderer: renderer,
+   // This prevents the markers from "billboarding" when the SceneView is tilted
+   elevationInfo: {
+     mode: "on-the-ground"
+   }
+ });
+
+ map = new Map({
+   basemap: "gray",
+   layers: [zipLyr]
+ });
+
+ view = new SceneView({
+   container: "viewDiv",
+   map: map,
+   zoom: 12,
+   center: [-121.494, 38.581]
+ });
+});
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
