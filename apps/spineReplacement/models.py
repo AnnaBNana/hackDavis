@@ -19,6 +19,7 @@ class Hospital(models.Model):
     def asJson(self):
         return {
             "id": self.id,
+            "hospital_name": self.name.encode("utf8")
             "hospital_lat": self.lat,
             "hospital_long": self.long,
         }
