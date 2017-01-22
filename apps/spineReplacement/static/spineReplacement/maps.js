@@ -22,7 +22,6 @@ function initMap() {
   bubble_map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: {lat: 37.774, lng: -122.419},
-    mapTypeId: 'terrain',
   });
   // Get the procedure and make ajax request
   var procedure = getUrlParameter('procedure').replace('+', ' ')
@@ -33,9 +32,9 @@ function initMap() {
     data: {procedure: procedure}
   })
     .done(function(data) {
-      console.log(data)
+      // console.log(data)
       // Helpers
-      console.log(data);
+      // console.log(data);
       var costs = function costs() {
         var costs = []
         for (var idx in data.hospitals) {
@@ -56,10 +55,15 @@ function initMap() {
         return colorMap
       }
       colorMap = colorDistribution()
+      data.hospitals.sort(function(a,b){
+        return a.avg_cost - b.avg_cost;
+      });
+      console.log(data.hospitals);
       // Actually adding the markers here
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
+        console.log(hospital);
         // Add the circle for this city to the map.
         var cityCircle = new google.maps.Circle({
           // stroke color gray until hover
