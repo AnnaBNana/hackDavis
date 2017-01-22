@@ -24,20 +24,25 @@ function initMap() {
     center: {lat: 37.774, lng: -122.419},
     styles: [
     {
-        "featureType": "all",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "landscape.man_made",
+      "elementType": "geometry.fill",
+      "stylers": [
+        { "color": "#d6d1c2" }
+      ]
+    },
+    {
+      "featureType": "landscape.natural",
+      "elementType": "geometry.fill",
+      "stylers": [
+        { "color": "#cbc2a9" }
+      ]
     },
     {
         "featureType": "poi.park",
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#aadd55"
+                "color": "#78d066"
             }
         ]
     },
@@ -46,7 +51,7 @@ function initMap() {
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#ffc107"
+                "color": "#eee238"
             }
         ]
     },
@@ -83,7 +88,7 @@ function initMap() {
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#03a9f4"
+                "color": "#56bcd2"
             }
         ]
     }
