@@ -170,9 +170,6 @@ body,html {
     font-size: 20px;
     line-height: 44px;
 }
-.sidebar-brand a {
-  color: #ffc107 !important;
-}
 
 .sidebar-nav .dropdown-menu {
     position: relative;
