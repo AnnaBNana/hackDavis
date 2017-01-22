@@ -107,3 +107,12 @@ html{
  .nav-wrapper{
    z-index: 5000;
  }
+
+
+ .navbar{
+   height: 100%;
+ }
+
+ .add_button{
+
+ }

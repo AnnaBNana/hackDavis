@@ -23,76 +23,71 @@ function initMap() {
     zoom: 12,
     center: {lat: 37.774, lng: -122.419},
     styles: [
-    {
-      "featureType": "landscape.man_made",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "color": "#d6d1c2" }
-      ]
-    },
-    {
-      "featureType": "landscape.natural",
-      "elementType": "geometry.fill",
-      "stylers": [
-        { "color": "#cbc2a9" }
-      ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#78d066"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#eee238"
-            }
-        ]
-    },
+          {
+              "featureType": "all",
+              "elementType": "labels",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#aadd55"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#ffc107"
+                  }
+              ]
+          },
 
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#56bcd2"
-            }
-        ]
-    }
-]
+          {
+              "featureType": "road.highway",
+              "elementType": "labels",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "elementType": "labels.text",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "elementType": "labels.text",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "water",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#03a9f4"
+                  }
+              ]
+          }
+      ]
   });
   // Get the procedure and make ajax request
   var procedure = getUrlParameter('procedure').replace('+', ' ')
@@ -123,19 +118,19 @@ function initMap() {
           colorMap[costArr[idx]] = colors[Math.floor(current)]
           current += step
         }
+        colorMap[costArr[costArr.length-1]] = colors[colors.length-1]
         return colorMap
       }
       colorMap = colorDistribution()
       data.hospitals.sort(function(a,b){
         return a.avg_cost - b.avg_cost;
       });
-      // console.log(data.hospitals);
       // Actually adding the markers here
       var circles = {}
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
-        // console.log(hospital);
+
         // Add the circle for this city to the map.
         $('#instances').append("\
           <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance'>\
@@ -284,9 +279,6 @@ function initMap() {
               });
           });
         });
-
-
-
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
           strokeColor: colorMap[hospital.avg_cost],
@@ -299,9 +291,10 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
+
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
-        });
+        })
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseout', function() {
           circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
         });

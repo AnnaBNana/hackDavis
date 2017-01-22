@@ -14,6 +14,12 @@ class Hospital(models.Model):
     name = models.CharField(max_length=255)
     lat = models.DecimalField(max_digits=20, decimal_places=4)
     long = models.DecimalField(max_digits=20, decimal_places=4)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=45)
+    state = models.CharField(max_length=2)
+    county = models.CharField(max_length=45)
+    telephone = models.CharField(max_length=45)
+    website = models.URLField()
     def __str__(self):
         return self.name.encode("utf8")
     def asJson(self):
@@ -28,6 +34,7 @@ class Instance(models.Model):
     procedure = models.ForeignKey(Procedure)
     hospital = models.ForeignKey(Hospital)
     cost = models.DecimalField(max_digits=20, decimal_places=2)
+    date = models.DateField()
     def __str__(self):
         return self.procedure.__str__() + " " + str(self.cost) + " " + self.hospital.__str__()
     def asJson(self):
