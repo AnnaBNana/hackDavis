@@ -75,7 +75,34 @@ function initMap() {
         );
 
         $('#' + hospital.id).click(function(){
-          console.log($(this).attr('id'));
+          var desiredid = $(this).attr('id');
+          var instances;
+          for(var i=0; i<data.hospitals.length; i++){
+            if(data.hospitals[i].id == desiredid) {
+              instances = data.hospitals[i].instances
+            }
+          }
+          console.log("found instances", instances)
+          // var hospitalMax = instances[0].instance_cost
+          // var hospitalMin = instances[0].instance_cost
+          // var mycats = [];
+          // for(var i=0; i<instances.length; i++){
+          //   if (instances[i].instance_cost > hospitalMax) {
+          //     hospitalMax = instances[i].instance_cost
+          //   }
+          //   if(instances[i].instance_cost < hospitalMin) {
+          //     hospitalMin = parseInt(instances[i].instance_cost)
+          //   }
+          //
+          // }
+          // console.log("hospital Mx", hospitalMax)
+          // var hospitalDiff = parseInt(hospitalMax) - parseInt(hospitalMin);
+          //
+          // var increment = Math.floor(hospitalDiff/10);
+          // console.log("increment", increment)
+
+
+
         })
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
