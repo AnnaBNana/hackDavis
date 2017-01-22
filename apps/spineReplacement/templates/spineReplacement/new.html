@@ -33,11 +33,12 @@
 
     <div class="form-wraps">
       <div class="row">
-       <form class="col s12">
+        <form class="col s12" action="{% url 'add' %}" method="POST">
+          {% csrf_token %}
          <div class="row">
            <!-- {{hospitals}} -->
            <div class="input-field col s6">
-            <select>
+            <select name="hospital">
                 <option value="" disabled selected>Choose a Hospital</option>
               {% for hospital in hospitals %}
                 <option value="{{hospital.name}}">{{hospital.name}}</option>
@@ -46,7 +47,7 @@
             <label>Hospital</label>
           </div>
             <div class="input-field col s6">
-             <select>
+             <select name="procedure">
                <option value="" disabled selected>Choose a Procedure</option>
               {% for p in procedures %}
                <option value="{{p.name}}">{{p.name}}</option>
@@ -57,11 +58,12 @@
          </div>
          <div class="row">
            <div class="input-field col s6">
-             <input id="cost" type="text" class="validate">
+             <input name="cost" id="cost" type="text" class="validate">
              <label for="cost">Cost</label>
            </div>
            <div class="input-field col s6">
-             <input id="date" type="date" class="validate datepicker">
+             {{form.date}}
+             <!-- <input name="date" id="date" type="date" class="validate datepicker"> -->
              <!-- <label for="date">Date</label> -->
            </div>
          </div>
