@@ -130,9 +130,10 @@ function initMap() {
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
+
         // Add the circle for this city to the map.
         $('#instances').append("\
-          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance' data-toggle='modal' data-target='.bs-example-modal-lg'>\
+          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance'>\
             <div class='col-md-5'>\
               <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
               <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
@@ -143,9 +144,141 @@ function initMap() {
           </div>"
         );
 
+        var all_ids = []
         $('#' + hospital.id).click(function(){
-          console.log($(this).attr('id'));
-        })
+          var desiredid = $(this).attr('id');
+          var instances;
+          var hospital_to_display;
+          // console.log("this is the all id's array", all_ids);
+          // $('#' + hospital.id).removeClass('active focus');
+          var in_array = inArray(all_ids, parseInt(desiredid));
+          if($(this).hasClass('focus')) {
+            removeFromArray(all_ids, parseInt(desiredid));
+          }
+          else if (!$(this).hasClass('focus') && !in_array) {
+            all_ids.push(parseInt(desiredid));
+          }
+          // console.log(all_ids);
+          if (all_ids.length == 1){
+            $(".large-button").html('Show data for one hospital').show();
+          }
+          else if (all_ids.length > 1) {
+            $(".large-button").html('Show data for ' + all_ids.length + ' hospitals');
+          }
+          else if (all_ids.length == 0) {
+            $(".large-button").hide();
+          }
+          function removeFromArray(arr,num){
+            var pos = arr.indexOf(num);
+            if (~pos){
+              arr.splice(pos,1);
+            }
+          }
+          function inArray(arr,item){
+            for (i in arr) {
+              if (arr[i] == item){
+                return true;
+              }
+            }
+            return false;
+          }
+          $(this).toggleClass('focus');
+          for(var i=0; i<data.hospitals.length; i++){
+            if(data.hospitals[i].id == desiredid) {
+              instances = data.hospitals[i].instances
+              hospital_to_display = data.hospitals[i].hospital_name
+              // console.log("got the name", data.hospitals[i].hospital_name)
+            }
+          }
+          console.log("all ids", all_ids);
+          var hospitalMax = instances[0].instance_cost
+          var hospitalMin = instances[0].instance_cost
+          var mycats = [];
+          for(var i=0; i<instances.length; i++){
+            if (instances[i].instance_cost > hospitalMax) {
+              hospitalMax = instances[i].instance_cost
+            }
+            if(instances[i].instance_cost < hospitalMin) {
+              hospitalMin = parseInt(instances[i].instance_cost)
+            }
+          }
+          // console.log("hospital Mx", hospitalMax, "hospital min", hospitalMin)
+          var hospitalDiff = parseInt(hospitalMax) - parseInt(hospitalMin);
+          //
+          var increment = Math.floor(hospitalDiff/10);
+          if(increment < 100){
+            increment = 100;
+          }
+          // console.log("increment", increment)
+          for(var j=0; j<10; j++){
+            mycats.push(parseInt(hospitalMin))
+            hospitalMin = parseInt(hospitalMin) + parseInt(increment)
+          }
+          // console.log(mycats)
+          var myvalues = [0,0,0,0,0,0,0,0,0,0];
+          for(var k=0; k<instances.length; k++){
+            var added = false
+            for(var m=0; m<mycats.length-1; m++){
+              var parsed = parseFloat(instances[k].instance_cost)
+
+              if(parsed >= mycats[m] && parsed < mycats[m+1]){
+                myvalues[m] += 1;
+                added = true
+                break;
+              }
+
+            }
+            if(added == false){
+              // console.log("going here", m)
+                myvalues[m] += 1;
+            }
+
+          }
+          // console.log(myvalues)
+          $(function () {
+              Highcharts.chart('highch', {
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: "Spine replacements at " + hospital_to_display
+                  },
+
+                  xAxis: {
+                      categories: mycats,
+                      crosshair: true,
+                      title: {
+                          text: 'Cost in dollars (USD)'
+                      }
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of procedures completed'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: [{
+                      name: hospital_to_display,
+                      data: myvalues
+
+                  }]
+              });
+          });
+        });
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
           strokeColor: colorMap[hospital.avg_cost],
@@ -158,6 +291,7 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
+
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
         })
@@ -165,6 +299,7 @@ function initMap() {
           circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
         });
       }
+      console.log(circles)
       // ******************************************************
       // Done adding Markers from AJAX
       // ADD FEATURES BELOW
