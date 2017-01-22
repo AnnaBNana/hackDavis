@@ -57,11 +57,24 @@ function initMap() {
       }
       colorMap = colorDistribution()
       // Actually adding the markers here
+      var circles = {}
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
         // Add the circle for this city to the map.
-        var cityCircle = new google.maps.Circle({
+        $('#instances').append("\
+          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance'>\
+            <div class='col-md-5'>\
+              <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
+              <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
+            </div>\
+            <div class='col-md-1 col-md-offset-5 cost'>\
+              <p class='bold'> $" + hospital.avg_cost.toFixed(2) + "</p>\
+            </div>\
+          </div>"
+        );
+
+        circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
           strokeColor: colorMap[hospital.avg_cost],
           strokeOpacity: 0.8,
@@ -73,18 +86,15 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
-        $('#instances').append("\
-          <div class='col-md-10 col-md-offset-2 instance'>\
-            <div class='col-md-5'>\
-              <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
-              <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
-            </div>\
-            <div class='col-md-1 col-md-offset-5 cost'>\
-              <p class='bold'> $" + hospital.avg_cost.toFixed(2) + "</p>\
-            </div>\
-          </div>"
-        );
+
+        google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
+          circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
+        })
+        google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseout', function() {
+          circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
+        });
       }
+      console.log(circles)
       // ******************************************************
       // Done adding Markers from AJAX
       // ADD FEATURES BELOW
