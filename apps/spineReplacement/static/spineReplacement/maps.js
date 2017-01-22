@@ -9,7 +9,7 @@ var colors = ['#4CBF00', '#5BAF00', '#6AA000', '#799000', '#898100', '#987200', 
   function initMap() {
     // Create the map.
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
+      zoom: 12,
       center: {lat: 37.774, lng: -122.419},
       mapTypeId: 'terrain'
     });
