@@ -19,7 +19,10 @@
     <link rel="stylesheet" href="../../static/spineReplacement/maps.css">
     <script src='../../static/spineReplacement/modal.js'>
 
+
     </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
   </head>
   <body>
 
@@ -161,9 +164,7 @@
         </div>
         <!-- /#wrapper -->
       </div> <!-- col -->
-      <!-- <div class="col-md-10">
-          <h1>Results {{id}}</h1>
-      </div> -->
+
         </div><!-- row -->
       </div> <!-- container -->
     <div id="map"></div>
@@ -189,7 +190,7 @@
     <!-- modal -->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div id="highch" class="modal-content">
           ...
         </div>
       </div>
