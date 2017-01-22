@@ -6,6 +6,7 @@ from .models import Hospital, Instance, Procedure, Prerequisite
 
 # Create your views here.
 def index(request):
+    allinstances = Instance.objects.all()
     return render(request, 'spineReplacement/index.html')
 
 def maps(request):
@@ -34,4 +35,3 @@ def hospital_details(request):
         if hospital_to_add['instances']:
             hospitals.append(hospital_to_add)
     return JsonResponse({'hospitals': hospitals})
->>>>>>> c672df7e5762cc212dbc81a1c822c4b0f913e04e
