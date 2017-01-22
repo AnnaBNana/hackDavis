@@ -145,12 +145,15 @@ function initMap() {
 
                   xAxis: {
                       categories: mycats,
-                      crosshair: true
+                      crosshair: true,
+                      title: {
+                          text: 'Cost in dollars (USD)'
+                      }
                   },
                   yAxis: {
                       min: 0,
                       title: {
-                          text: 'Cost in dollars (USD)'
+                          text: 'Number of procedures completed'
                       }
                   },
                   tooltip: {

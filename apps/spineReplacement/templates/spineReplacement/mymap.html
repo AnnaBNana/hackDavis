@@ -86,12 +86,15 @@ $(function () {
 
         xAxis: {
             categories: mycats,
-            crosshair: true
+            crosshair: true,
+            title: {
+              text: 'Cost in thousands of dollars (USD)'
+            }
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Cost in thousands of dollars (USD)'
+                text: 'Number of procedures completed'
             }
         },
         tooltip: {
