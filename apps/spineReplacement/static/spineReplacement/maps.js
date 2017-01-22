@@ -129,16 +129,16 @@ function initMap() {
       data.hospitals.sort(function(a,b){
         return a.avg_cost - b.avg_cost;
       });
-      console.log(data.hospitals);
+      // console.log(data.hospitals);
       // Actually adding the markers here
       var circles = {}
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
-        console.log(hospital);
+        // console.log(hospital);
         // Add the circle for this city to the map.
         $('#instances').append("\
-          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance' data-toggle='modal' data-target='.bs-example-modal-lg'>\
+          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance'>\
             <div class='col-md-5'>\
               <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
               <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
@@ -149,18 +149,53 @@ function initMap() {
           </div>"
         );
 
+        var all_ids = []
         $('#' + hospital.id).click(function(){
           var desiredid = $(this).attr('id');
           var instances;
           var hospital_to_display;
+          // console.log("this is the all id's array", all_ids);
+          // $('#' + hospital.id).removeClass('active focus');
+          var in_array = inArray(all_ids, parseInt(desiredid));
+          if($(this).hasClass('focus')) {
+            removeFromArray(all_ids, parseInt(desiredid));
+          }
+          else if (!$(this).hasClass('focus') && !in_array) {
+            all_ids.push(parseInt(desiredid));
+          }
+          // console.log(all_ids);
+          if (all_ids.length == 1){
+            $(".large-button").html('Show data for one hospital').show();
+          }
+          else if (all_ids.length > 1) {
+            $(".large-button").html('Show data for ' + all_ids.length + ' hospitals');
+          }
+          else if (all_ids.length == 0) {
+            $(".large-button").hide();
+          }
+          function removeFromArray(arr,num){
+            var pos = arr.indexOf(num);
+            if (~pos){
+              arr.splice(pos,1);
+            }
+          }
+          function inArray(arr,item){
+            for (i in arr) {
+              if (arr[i] == item){
+                return true;
+              }
+            }
+            return false;
+          }
+          $(this).toggleClass('focus');
           for(var i=0; i<data.hospitals.length; i++){
             if(data.hospitals[i].id == desiredid) {
               instances = data.hospitals[i].instances
               hospital_to_display = data.hospitals[i].hospital_name
-              console.log("got the name", data.hospitals[i].hospital_name)
+              // console.log("got the name", data.hospitals[i].hospital_name)
             }
           }
-          console.log("found instances", instances)
+          console.log("all ids", all_ids);
           var hospitalMax = instances[0].instance_cost
           var hospitalMin = instances[0].instance_cost
           var mycats = [];
@@ -172,19 +207,19 @@ function initMap() {
               hospitalMin = parseInt(instances[i].instance_cost)
             }
           }
-          console.log("hospital Mx", hospitalMax, "hospital min", hospitalMin)
+          // console.log("hospital Mx", hospitalMax, "hospital min", hospitalMin)
           var hospitalDiff = parseInt(hospitalMax) - parseInt(hospitalMin);
           //
           var increment = Math.floor(hospitalDiff/10);
           if(increment < 100){
             increment = 100;
           }
-          console.log("increment", increment)
+          // console.log("increment", increment)
           for(var j=0; j<10; j++){
             mycats.push(parseInt(hospitalMin))
             hospitalMin = parseInt(hospitalMin) + parseInt(increment)
           }
-          console.log(mycats)
+          // console.log(mycats)
           var myvalues = [0,0,0,0,0,0,0,0,0,0];
           for(var k=0; k<instances.length; k++){
             var added = false
@@ -199,12 +234,12 @@ function initMap() {
 
             }
             if(added == false){
-              console.log("going here", m)
+              // console.log("going here", m)
                 myvalues[m] += 1;
             }
 
           }
-          console.log(myvalues)
+          // console.log(myvalues)
           $(function () {
               Highcharts.chart('highch', {
                   chart: {
@@ -248,13 +283,10 @@ function initMap() {
                   }]
               });
           });
+        });
 
 
 
-
-
-
-        })
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
           strokeColor: colorMap[hospital.avg_cost],
