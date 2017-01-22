@@ -21,7 +21,7 @@ def mymap(request):
 def new(request):
     hospitals = Hospital.objects.all()
     procedures = Procedure.objects.all()
-    return render(request, 'spineReplacement/new.html', {hospitals: hospitals, procedures: procedures})
+    return render(request, 'spineReplacement/new.html', {'hospitals': hospitals, 'procedures': procedures})
 
 def add(request):
     if request.method == "POST":

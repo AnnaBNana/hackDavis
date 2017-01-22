@@ -11,9 +11,9 @@
     <script src="../../static/spineReplacement/materialize.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
-      /*.form-wraps{
-        text-align: center;
-      }*/
+      .form-wraps{
+        padding: 20px;
+      }
     </style>
     <link rel="stylesheet" href="../../static/spineReplacement/main.css">
   </head>
@@ -31,27 +31,45 @@
       </div>
     </nav>
 
-    <div class="">
+    <div class="form-wraps">
       <div class="row">
        <form class="col s12">
          <div class="row">
+           <!-- {{hospitals}} -->
            <div class="input-field col s6">
-             <input id="password" type="password" class="validate">
-             <label for="password">Password</label>
-           </div>
-           <div class="input-field col s6">
-             <input id="password" type="password" class="validate">
-             <label for="password">Password</label>
+            <select>
+                <option value="" disabled selected>Choose a Hospital</option>
+              {% for hospital in hospitals %}
+                <option value="{{hospital.name}}">{{hospital.name}}</option>
+              {% endfor %}
+            </select>
+            <label>Hospital</label>
+          </div>
+            <div class="input-field col s6">
+             <select>
+               <option value="" disabled selected>Choose a Procedure</option>
+              {% for p in procedures %}
+               <option value="{{p.name}}">{{p.name}}</option>
+              {% endfor %}
+             </select>
+             <label>Procedure</label>
            </div>
          </div>
          <div class="row">
            <div class="input-field col s6">
-             <input id="password" type="password" class="validate">
-             <label for="password">Password</label>
+             <input id="cost" type="text" class="validate">
+             <label for="cost">Cost</label>
            </div>
            <div class="input-field col s6">
-             <input id="password" type="password" class="validate">
-             <label for="password">Password</label>
+             <input id="date" type="date" class="validate datepicker">
+             <!-- <label for="date">Date</label> -->
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
+             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
            </div>
          </div>
        </form>
@@ -60,3 +78,14 @@
 
   </body>
 </html>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+</script>
