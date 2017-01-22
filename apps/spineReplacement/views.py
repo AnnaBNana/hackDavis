@@ -25,12 +25,11 @@ def new(request):
     return render(request, 'spineReplacement/new.html', {'hospitals': hospitals, 'procedures': procedures, 'form': InstanceForm()})
 
 def add(request):
-    print "What up G"
-    print request.POST
     if request.method == "POST":
         hospital = Hospital.objects.filter(name=request.POST['hospital'])[0]
         procedure = Procedure.objects.filter(name=request.POST['procedure'])[0]
-        i = Instance(cost=request.POST['cost'], date=request.POST['date'], hospital=hospital, procedure=procedure)
+        date = request.POST['date_year']+'-'+request.POST['date_month']+'-'+request.POST['date_day']
+        i = Instance(cost=request.POST['cost'], date=date, hospital=hospital, procedure=procedure)
         i.save()
         return redirect('index')
 
