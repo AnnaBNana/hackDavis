@@ -95,7 +95,7 @@ function initMap() {
         });
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
-        })
+        });
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseout', function() {
           circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
         });
