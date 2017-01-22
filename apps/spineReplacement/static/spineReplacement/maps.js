@@ -185,12 +185,119 @@ function initMap() {
           $(this).toggleClass('focus');
           for(var i=0; i<data.hospitals.length; i++){
             if(data.hospitals[i].id == desiredid) {
+              console.log("examine instance", data.hospitals[i].id)
               instances = data.hospitals[i].instances
               hospital_to_display = data.hospitals[i].hospital_name
               // console.log("got the name", data.hospitals[i].hospital_name)
             }
           }
+          var instanceDictionary = {};
+          var hospitalNames = [];
+          var min = 500000000000;
+          var max = 0;
           console.log("all ids", all_ids);
+          for (var a=0; a<all_ids.length; a++){
+            for(var b=0; b<data.hospitals.length; b++){
+              if(all_ids[a] == data.hospitals[b].id){
+                hospitalNames.push(data.hospitals[b].hospital_name);
+                instanceDictionary[data.hospitals[b].hospital_name] = data.hospitals[b].instances;
+                for(var c=0; c<data.hospitals[b].instances.length; c++) {
+                  var parsed = parseFloat(data.hospitals[b].instances[c].instance_cost);
+                  if(parsed > max){
+                    max = parsed;
+                  }
+                  if(parsed < min){
+                    min = parsed;
+                  }
+
+                }
+              }
+            }
+          }
+          console.log("Got the instanceDictionary", instanceDictionary);
+          console.log("Got the max and min", max, min);
+          console.log("Hospital names", hospitalNames);
+          var mycats = [];
+          var hospitalDiff = max - min;
+          var increment = Math.floor(hospitalDiff / 10);
+          console.log("Got the increment", increment);
+          for(var d=0; d<10; d++){
+            mycats.push(min)
+            min = min + increment
+          }
+          console.log("got the cats", mycats);
+          var valuesDictionary = {};
+          var seriesArray = [];
+          for(var m=0; m<all_ids.length; m++){
+            valuesDictionary[hospitalNames[m]] = [0,0,0,0,0,0,0,0,0,0];
+          }
+          for(var x=0; x<hospitalNames.length; x++){
+            var myvalues = [0,0,0,0,0,0,0,0,0,0];
+            var array_to_study = instanceDictionary[hospitalNames[x]];
+            for(var k=0; k<array_to_study.length; k++){
+              var added = false;
+              for(var n=0; n<mycats.length-1; n++){
+                var parsed = parseFloat(array_to_study[k].instance_cost)
+                if(parsed >= mycats[n] && parsed < mycats[n+1]){
+                  myvalues[n] += 1;
+                  added = true;
+                  break;
+                }
+              }
+              if(added == false){
+                myvalues[n] += 1;
+              }
+            }
+            var catsToDisplay = [];
+            for(var d=0; d<mycats.length; d++){
+              catsToDisplay.push(String(mycats[d]) + " - " + String(mycats[d] + increment));
+            }
+            console.log("got the cats to display", catsToDisplay);
+            seriesArray.push({"name":hospitalNames[x], "data": myvalues});
+            valuesDictionary[hospitalNames[x]] = myvalues;
+
+          }
+          console.log("MY VALUES", myvalues);
+          console.log("GOT THE SERIES ARRAY", seriesArray);
+          $(function () {
+              Highcharts.chart('highch', {
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: "Spine replacements at selected hospitals"
+                  },
+
+                  xAxis: {
+                      categories: catsToDisplay,
+                      crosshair: true,
+                      title: {
+                          text: 'Cost in dollars (USD)'
+                      }
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of procedures completed'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: seriesArray
+              });
+          });
           var hospitalMax = instances[0].instance_cost
           var hospitalMin = instances[0].instance_cost
           var mycats = [];
@@ -235,49 +342,7 @@ function initMap() {
 
           }
           // console.log(myvalues)
-          $(function () {
-              Highcharts.chart('highch', {
-                  chart: {
-                      type: 'column'
-                  },
-                  title: {
-                      text: "Spine replacements at " + hospital_to_display
-                  },
 
-                  xAxis: {
-                      categories: mycats,
-                      crosshair: true,
-                      title: {
-                          text: 'Cost in dollars (USD)'
-                      }
-                  },
-                  yAxis: {
-                      min: 0,
-                      title: {
-                          text: 'Number of procedures completed'
-                      }
-                  },
-                  tooltip: {
-                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                          '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                      footerFormat: '</table>',
-                      shared: true,
-                      useHTML: true
-                  },
-                  plotOptions: {
-                      column: {
-                          pointPadding: 0.2,
-                          borderWidth: 0
-                      }
-                  },
-                  series: [{
-                      name: hospital_to_display,
-                      data: myvalues
-
-                  }]
-              });
-          });
         });
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
