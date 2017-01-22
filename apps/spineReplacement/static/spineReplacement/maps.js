@@ -125,13 +125,11 @@ function initMap() {
       data.hospitals.sort(function(a,b){
         return a.avg_cost - b.avg_cost;
       });
-      console.log(data.hospitals);
       // Actually adding the markers here
       var circles = {}
       for (var idx in data.hospitals) {
 
         var hospital = data.hospitals[idx]
-        console.log(hospital);
         // Add the circle for this city to the map.
         $('#instances').append("\
           <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance' data-toggle='modal' data-target='.bs-example-modal-lg'>\
@@ -167,7 +165,6 @@ function initMap() {
           circles[this.id].setOptions({fillOpacity : 0.5, strokeOpacity: 0.8})
         });
       }
-      console.log(circles)
       // ******************************************************
       // Done adding Markers from AJAX
       // ADD FEATURES BELOW
