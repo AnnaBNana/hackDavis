@@ -63,7 +63,7 @@ function initMap() {
         var hospital = data.hospitals[idx]
         // Add the circle for this city to the map.
         $('#instances').append("\
-          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance'>\
+          <div id=" + hospital.id + " class='col-md-10 col-md-offset-2 instance' data-toggle='modal' data-target='.bs-example-modal-lg'>\
             <div class='col-md-5'>\
               <p><span class='bold'>Procedure:</span> " + hospital.instances[0].procedure_name + "</p>\
               <p><span class='bold'>Hospital:</span> " + hospital.hospital_name + "</p>\
@@ -74,6 +74,9 @@ function initMap() {
           </div>"
         );
 
+        $('#' + hospital.id).click(function(){
+          console.log($(this).attr('id'));
+        })
         circles[hospital.id] = new google.maps.Circle({
           // stroke color gray until hover
           strokeColor: colorMap[hospital.avg_cost],
@@ -86,7 +89,6 @@ function initMap() {
           center: {lat: parseFloat(hospital["hospital_lat"]), lng: parseFloat(hospital["hospital_long"])},
           radius: Math.sqrt(hospital.instances.length * 10) * 100
         });
-
         google.maps.event.addDomListener(document.getElementById(hospital.id), 'mouseover', function() {
           circles[this.id].setOptions({fillOpacity : 1, strokeOpacity: 1})
         })
