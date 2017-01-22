@@ -7,3 +7,6 @@ def index(request):
 def results(request, id):
     context = {"id":id}
     return render(request, 'spineReplacement/results.html', context)
+
+def maps(request):
+    return render(request, 'spineReplacement/maps.html')
